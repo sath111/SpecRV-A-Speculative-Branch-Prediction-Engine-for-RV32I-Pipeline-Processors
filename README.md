@@ -10,4 +10,9 @@ The system includes modular components such as a Global History Shift Register (
 * Predict conditional and unconditional branch outcomes in the Instruction Fetch stage.
 * Recover from mispredictions using a snapshot and rollback mechanism.
 * Enable modular, parameterized design that can be easily extended or reused.
-* 
+
+# Architecture Overview
+The overall architecture of this system includes a Gshare predictor integrated into a standard 5-stage RV32I pipeline. The predictor influences the instruction fetch path by speculatively supplying the next PC and is later corrected if the prediction was wrong.
+The system captures the relationship between BTB, GHSR, PHT, and the pipeline stages responsible for resolving branches. Mispredictions trigger a flush and rollback mechanism using a stored snapshot of the predictor state.
+To help visualize the design, a complete architecture diagram is provided:
+View the full system diagram here: [Insert your draw.io or shared image link]
