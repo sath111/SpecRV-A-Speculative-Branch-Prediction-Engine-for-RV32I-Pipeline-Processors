@@ -80,5 +80,7 @@ This is the main stress test for Gshare. The predictor must learn:
 By monitoring GHSR behavior and observing misprediction recovery in the waveform, this test highlights how well the predictor adapts to nested control flow and whether the rollback mechanism works correctly.
 
 **Waveform Observation**
+![Waveform Test 3](../Image/waveform_test3_2.png)
 ![Waveform Test 3](../Image/waveform_test3_1.png)
+
 
