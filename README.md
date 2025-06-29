@@ -94,4 +94,15 @@ This is the main stress test for Gshare. The predictor must learn:
 * To quickly recover from mispredictions using snapshots  
 By monitoring GHSR behavior and observing misprediction recovery in the waveform, this test highlights how well the predictor adapts to nested control flow and whether the rollback mechanism works correctly.  
 
+# Performance Gains from Early Branch Prediction
+Conditional branches such as beq and bne benefit significantly from the integration of the Gshare predictor. By maintaining a global history register (GHSR) and consulting a pattern history table (PHT) using XOR indexing, the predictor can anticipate whether a branch is likely to be taken or not. This prediction happens at the fetch stage, allowing the pipeline to preemptively decide the control flow before the instruction is decoded or executed. When the prediction is accurate, the pipeline avoids control stalls; if mispredicted, a snapshot-based recovery mechanism restores the correct path with minimal penalty.
+
+Unconditional jumps, such as jal and jalr, are always treated as taken and rely solely on the BTB to provide the jump target. When a valid BTB entry is found, the pipeline can fetch from the target address immediately during the IF stage without waiting to compute the jump offset. This early resolution is especially valuable in loops and function calls, where repeated jumps are common. The result is a clear reduction in latency and improved instruction throughput.
+
+Together, the BTB and Gshare predictor form a complementary system that minimizes control hazards while maintaining correctness. Their collaboration enables the pipeline to remain continuously fed with useful instructions, and ensures that mispredictions are corrected quickly and cleanly. This architecture provides strong performance even in complex branching scenarios, laying a solid foundation for future expansion into more advanced processors.
+
+# Conclusion
+This project presents a speculative branch prediction engine designed specifically for RV32I pipeline processors, combining a Gshare predictor with a Branch Target Buffer (BTB) and snapshot-based recovery. Through careful integration at the fetch stage, the system can accurately anticipate control flow for both conditional and unconditional branches, significantly reducing stalls and improving instruction throughput. The predictor has been validated through simulation with realistic test cases, including nested loops and memory interactions, demonstrating its correctness and performance advantages. This design not only enhances execution flow in traditional in-order pipelines, but also lays the groundwork for future extensions in out-of-order architectures. SpecRV serves as both a functional module and an educational platform to explore speculative execution, control flow prediction, and microarchitectural optimization in RISC-V systems.
+
+
 
