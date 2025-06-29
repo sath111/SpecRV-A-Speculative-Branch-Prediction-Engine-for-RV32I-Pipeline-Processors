@@ -94,5 +94,6 @@ Initially, since ```x3``` starts at 0 and ```x4``` is set to 4, the condition ``
 * It is important to note that the unconditional ```jump jal x0, LOOP``` does not cause any misprediction, as such branches are always treated as taken and do not rely on the branch predictor.  
 
 ## Conclusion from the Waveform
-**Predictor Learning Capability**: The Gshare predictor gradually adapts to the inner loop’s conditional branch behavior by updating its state through GHSR and PHT entries. After several iterations, it transitions to consistently correct predictions.  
-**Accurate Rollback Mechanism**: Upon detecting a misprediction, the pipeline promptly discards incorrect instructions via flush signals and restores both the PC and predictor state using snapshot rollback. This ensures that speculative execution never corrupts the architectural state.  
+* **Predictor Learning Capability**: The Gshare predictor gradually adapts to the inner loop’s conditional branch behavior by updating its state through GHSR and PHT entries. After several iterations, it transitions to consistently correct predictions.  
+* **Accurate Rollback Mechanism**: Upon detecting a misprediction, the pipeline promptly discards incorrect instructions via flush signals and restores both the PC and predictor state using snapshot rollback. This ensures that speculative execution never corrupts the architectural state.  
+Together, these behaviors confirm that the implemented branch prediction system is not only functional but also robust and adaptive, meeting the goals of speculative execution with correct recovery.
