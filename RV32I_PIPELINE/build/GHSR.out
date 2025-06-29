@@ -1,0 +1,57 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\va_math.vpi";
+S_0000020fd12cec40 .scope module, "GHSR" "GHSR" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "i_ac";
+    .port_info 3 /INPUT 1 "i_update";
+    .port_info 4 /OUTPUT 8 "o_ghsr";
+P_0000020fd12ccea0 .param/l "d_width" 0 2 2, +C4<00000000000000000000000000001000>;
+o0000020fd1316fd8 .functor BUFZ 1, C4<z>; HiZ drive
+v0000020fd12e2f30_0 .net "clk", 0 0, o0000020fd1316fd8;  0 drivers
+o0000020fd1317008 .functor BUFZ 1, C4<z>; HiZ drive
+v0000020fd12e2b30_0 .net "i_ac", 0 0, o0000020fd1317008;  0 drivers
+o0000020fd1317038 .functor BUFZ 1, C4<z>; HiZ drive
+v0000020fd12cedd0_0 .net "i_update", 0 0, o0000020fd1317038;  0 drivers
+v0000020fd12cee70_0 .var "o_ghsr", 7 0;
+o0000020fd1317098 .functor BUFZ 1, C4<z>; HiZ drive
+v0000020fd12cef10_0 .net "rst_n", 0 0, o0000020fd1317098;  0 drivers
+E_0000020fd12ccce0/0 .event negedge, v0000020fd12cef10_0;
+E_0000020fd12ccce0/1 .event posedge, v0000020fd12e2f30_0;
+E_0000020fd12ccce0 .event/or E_0000020fd12ccce0/0, E_0000020fd12ccce0/1;
+    .scope S_0000020fd12cec40;
+T_0 ;
+    %wait E_0000020fd12ccce0;
+    %load/vec4 v0000020fd12cef10_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0000020fd12cee70_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0000020fd12cedd0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0000020fd12cee70_0;
+    %parti/s 7, 0, 2;
+    %load/vec4 v0000020fd12e2b30_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0000020fd12cee70_0, 0;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "GHSR.v";

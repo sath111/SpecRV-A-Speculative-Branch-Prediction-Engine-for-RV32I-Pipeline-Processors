@@ -1,0 +1,130 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\va_math.vpi";
+S_000001a8d6e72830 .scope module, "IF_ID" "IF_ID" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "en";
+    .port_info 3 /INPUT 1 "flush";
+    .port_info 4 /INPUT 2 "F_PC_src";
+    .port_info 5 /INPUT 32 "F_PC_target_btb";
+    .port_info 6 /INPUT 1 "F_predict";
+    .port_info 7 /INPUT 8 "F_addr_PHT";
+    .port_info 8 /INPUT 32 "F_ins";
+    .port_info 9 /INPUT 32 "F_PC_cur";
+    .port_info 10 /INPUT 32 "F_PC_next";
+    .port_info 11 /OUTPUT 2 "D_PC_src";
+    .port_info 12 /OUTPUT 32 "D_PC_targer_btb";
+    .port_info 13 /OUTPUT 1 "D_predict";
+    .port_info 14 /OUTPUT 8 "D_addr_PHT";
+    .port_info 15 /OUTPUT 32 "D_ins";
+    .port_info 16 /OUTPUT 32 "D_PC_cur";
+    .port_info 17 /OUTPUT 32 "D_PC_next";
+v000001a8d6e5e980_0 .var "D_PC_cur", 31 0;
+v000001a8d6e72af0_0 .var "D_PC_next", 31 0;
+v000001a8d6e5bc50_0 .var "D_PC_src", 1 0;
+v000001a8d6e5bcf0_0 .var "D_PC_targer_btb", 31 0;
+v000001a8d6e5bd90_0 .var "D_addr_PHT", 7 0;
+v000001a8d6e5be30_0 .var "D_ins", 31 0;
+v000001a8d6e5bed0_0 .var "D_predict", 0 0;
+o000001a8d6ead108 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001a8d6ea39e0_0 .net "F_PC_cur", 31 0, o000001a8d6ead108;  0 drivers
+o000001a8d6ead138 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001a8d6ea3a80_0 .net "F_PC_next", 31 0, o000001a8d6ead138;  0 drivers
+o000001a8d6ead168 .functor BUFZ 2, C4<zz>; HiZ drive
+v000001a8d6ea3b20_0 .net "F_PC_src", 1 0, o000001a8d6ead168;  0 drivers
+o000001a8d6ead198 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001a8d6ea3bc0_0 .net "F_PC_target_btb", 31 0, o000001a8d6ead198;  0 drivers
+o000001a8d6ead1c8 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v000001a8d6ea3c60_0 .net "F_addr_PHT", 7 0, o000001a8d6ead1c8;  0 drivers
+o000001a8d6ead1f8 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001a8d6ea3d00_0 .net "F_ins", 31 0, o000001a8d6ead1f8;  0 drivers
+o000001a8d6ead228 .functor BUFZ 1, C4<z>; HiZ drive
+v000001a8d6ea3da0_0 .net "F_predict", 0 0, o000001a8d6ead228;  0 drivers
+o000001a8d6ead258 .functor BUFZ 1, C4<z>; HiZ drive
+v000001a8d6ef4320_0 .net "clk", 0 0, o000001a8d6ead258;  0 drivers
+o000001a8d6ead288 .functor BUFZ 1, C4<z>; HiZ drive
+v000001a8d6ef3d80_0 .net "en", 0 0, o000001a8d6ead288;  0 drivers
+o000001a8d6ead2b8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001a8d6ef4000_0 .net "flush", 0 0, o000001a8d6ead2b8;  0 drivers
+o000001a8d6ead2e8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001a8d6ef3880_0 .net "rst_n", 0 0, o000001a8d6ead2e8;  0 drivers
+E_000001a8d6e95300/0 .event negedge, v000001a8d6ef3880_0;
+E_000001a8d6e95300/1 .event posedge, v000001a8d6ef4320_0;
+E_000001a8d6e95300 .event/or E_000001a8d6e95300/0, E_000001a8d6e95300/1;
+    .scope S_000001a8d6e72830;
+T_0 ;
+    %wait E_000001a8d6e95300;
+    %load/vec4 v000001a8d6ef3880_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v000001a8d6e5bc50_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e5bcf0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001a8d6e5bed0_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v000001a8d6e5bd90_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e5be30_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e5e980_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e72af0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000001a8d6ef4000_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v000001a8d6e5bc50_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e5bcf0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001a8d6e5bed0_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v000001a8d6e5bd90_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e5be30_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e5e980_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001a8d6e72af0_0, 0;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v000001a8d6ef3d80_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.4, 8;
+    %load/vec4 v000001a8d6ea3b20_0;
+    %assign/vec4 v000001a8d6e5bc50_0, 0;
+    %load/vec4 v000001a8d6ea3bc0_0;
+    %assign/vec4 v000001a8d6e5bcf0_0, 0;
+    %load/vec4 v000001a8d6ea3da0_0;
+    %assign/vec4 v000001a8d6e5bed0_0, 0;
+    %load/vec4 v000001a8d6ea3c60_0;
+    %assign/vec4 v000001a8d6e5bd90_0, 0;
+    %load/vec4 v000001a8d6ea3d00_0;
+    %assign/vec4 v000001a8d6e5be30_0, 0;
+    %load/vec4 v000001a8d6ea39e0_0;
+    %assign/vec4 v000001a8d6e5e980_0, 0;
+    %load/vec4 v000001a8d6ea3a80_0;
+    %assign/vec4 v000001a8d6e72af0_0, 0;
+T_0.4 ;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "IF_ID.v";

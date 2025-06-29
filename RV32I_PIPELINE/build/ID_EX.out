@@ -1,0 +1,255 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "D:\iverilog\iverilog\lib\ivl\system.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "D:\iverilog\iverilog\lib\ivl\va_math.vpi";
+S_000001bb67132eb0 .scope module, "ID_EX" "ID_EX" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "flush";
+    .port_info 3 /INPUT 1 "D_predict";
+    .port_info 4 /INPUT 8 "D_addr_PHT";
+    .port_info 5 /INPUT 1 "D_jump";
+    .port_info 6 /INPUT 1 "D_branch";
+    .port_info 7 /INPUT 2 "D_wb";
+    .port_info 8 /INPUT 3 "D_funct3";
+    .port_info 9 /INPUT 1 "D_load_store";
+    .port_info 10 /INPUT 1 "D_endmem";
+    .port_info 11 /INPUT 4 "D_alucontrol";
+    .port_info 12 /INPUT 1 "D_alu_src";
+    .port_info 13 /INPUT 1 "D_wen_rf";
+    .port_info 14 /INPUT 32 "D_rdata1";
+    .port_info 15 /INPUT 32 "D_rdata2";
+    .port_info 16 /INPUT 32 "D_extend";
+    .port_info 17 /INPUT 32 "D_PC_cur";
+    .port_info 18 /INPUT 32 "D_PC_next";
+    .port_info 19 /INPUT 5 "D_rd";
+    .port_info 20 /INPUT 5 "D_rs1";
+    .port_info 21 /INPUT 5 "D_rs2";
+    .port_info 22 /OUTPUT 1 "E_predict";
+    .port_info 23 /OUTPUT 8 "E_addr_PHT";
+    .port_info 24 /OUTPUT 1 "E_jump";
+    .port_info 25 /OUTPUT 1 "E_branch";
+    .port_info 26 /OUTPUT 2 "E_wb";
+    .port_info 27 /OUTPUT 3 "E_funct3";
+    .port_info 28 /OUTPUT 1 "E_load_store";
+    .port_info 29 /OUTPUT 1 "E_endmem";
+    .port_info 30 /OUTPUT 4 "E_alucontrol";
+    .port_info 31 /OUTPUT 1 "E_alu_src";
+    .port_info 32 /OUTPUT 1 "E_wen_rf";
+    .port_info 33 /OUTPUT 32 "E_rdata1";
+    .port_info 34 /OUTPUT 32 "E_rdata2";
+    .port_info 35 /OUTPUT 32 "E_extend";
+    .port_info 36 /OUTPUT 32 "E_PC_cur";
+    .port_info 37 /OUTPUT 32 "E_PC_next";
+    .port_info 38 /OUTPUT 5 "E_rd";
+    .port_info 39 /OUTPUT 5 "E_rs1";
+    .port_info 40 /OUTPUT 5 "E_rs2";
+o000001bb67177fd8 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001bb671332e0_0 .net "D_PC_cur", 31 0, o000001bb67177fd8;  0 drivers
+o000001bb67178008 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001bb671c2c70_0 .net "D_PC_next", 31 0, o000001bb67178008;  0 drivers
+o000001bb67178038 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v000001bb671c2d10_0 .net "D_addr_PHT", 7 0, o000001bb67178038;  0 drivers
+o000001bb67178068 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671c2db0_0 .net "D_alu_src", 0 0, o000001bb67178068;  0 drivers
+o000001bb67178098 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v000001bb671c2e50_0 .net "D_alucontrol", 3 0, o000001bb67178098;  0 drivers
+o000001bb671780c8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671c2ef0_0 .net "D_branch", 0 0, o000001bb671780c8;  0 drivers
+o000001bb671780f8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671640a0_0 .net "D_endmem", 0 0, o000001bb671780f8;  0 drivers
+o000001bb67178128 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001bb67164140_0 .net "D_extend", 31 0, o000001bb67178128;  0 drivers
+o000001bb67178158 .functor BUFZ 3, C4<zzz>; HiZ drive
+v000001bb671641e0_0 .net "D_funct3", 2 0, o000001bb67178158;  0 drivers
+o000001bb67178188 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb67164280_0 .net "D_jump", 0 0, o000001bb67178188;  0 drivers
+o000001bb671781b8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb67164320_0 .net "D_load_store", 0 0, o000001bb671781b8;  0 drivers
+o000001bb671781e8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671643c0_0 .net "D_predict", 0 0, o000001bb671781e8;  0 drivers
+o000001bb67178218 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v000001bb671c3080_0 .net "D_rd", 4 0, o000001bb67178218;  0 drivers
+o000001bb67178248 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001bb671c3120_0 .net "D_rdata1", 31 0, o000001bb67178248;  0 drivers
+o000001bb67178278 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v000001bb671c31c0_0 .net "D_rdata2", 31 0, o000001bb67178278;  0 drivers
+o000001bb671782a8 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v000001bb671c3260_0 .net "D_rs1", 4 0, o000001bb671782a8;  0 drivers
+o000001bb671782d8 .functor BUFZ 5, C4<zzzzz>; HiZ drive
+v000001bb671c34e0_0 .net "D_rs2", 4 0, o000001bb671782d8;  0 drivers
+o000001bb67178308 .functor BUFZ 2, C4<zz>; HiZ drive
+v000001bb671c3bc0_0 .net "D_wb", 1 0, o000001bb67178308;  0 drivers
+o000001bb67178338 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671c3300_0 .net "D_wen_rf", 0 0, o000001bb67178338;  0 drivers
+v000001bb671c2fe0_0 .var "E_PC_cur", 31 0;
+v000001bb671c33a0_0 .var "E_PC_next", 31 0;
+v000001bb671c36c0_0 .var "E_addr_PHT", 7 0;
+v000001bb671c3620_0 .var "E_alu_src", 0 0;
+v000001bb671c3440_0 .var "E_alucontrol", 3 0;
+v000001bb671c3580_0 .var "E_branch", 0 0;
+v000001bb671c38a0_0 .var "E_endmem", 0 0;
+v000001bb671c3e40_0 .var "E_extend", 31 0;
+v000001bb671c3760_0 .var "E_funct3", 2 0;
+v000001bb671c3c60_0 .var "E_jump", 0 0;
+v000001bb671c3800_0 .var "E_load_store", 0 0;
+v000001bb671c3940_0 .var "E_predict", 0 0;
+v000001bb671c3a80_0 .var "E_rd", 4 0;
+v000001bb671c39e0_0 .var "E_rdata1", 31 0;
+v000001bb671c3b20_0 .var "E_rdata2", 31 0;
+v000001bb671c3ee0_0 .var "E_rs1", 4 0;
+v000001bb671c3d00_0 .var "E_rs2", 4 0;
+v000001bb671c3da0_0 .var "E_wb", 1 0;
+v000001bb671c4f90_0 .var "E_wen_rf", 0 0;
+o000001bb671786f8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671c4450_0 .net "clk", 0 0, o000001bb671786f8;  0 drivers
+o000001bb67178728 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671c4e50_0 .net "flush", 0 0, o000001bb67178728;  0 drivers
+o000001bb67178758 .functor BUFZ 1, C4<z>; HiZ drive
+v000001bb671c44f0_0 .net "rst_n", 0 0, o000001bb67178758;  0 drivers
+E_000001bb67158090/0 .event negedge, v000001bb671c44f0_0;
+E_000001bb67158090/1 .event posedge, v000001bb671c4450_0;
+E_000001bb67158090 .event/or E_000001bb67158090/0, E_000001bb67158090/1;
+    .scope S_000001bb67132eb0;
+T_0 ;
+    %wait E_000001bb67158090;
+    %load/vec4 v000001bb671c44f0_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3940_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v000001bb671c36c0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3c60_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3580_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v000001bb671c3da0_0, 0;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v000001bb671c3760_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3800_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c38a0_0, 0;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v000001bb671c3440_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3620_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c4f90_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c39e0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c3b20_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c3e40_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c2fe0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c33a0_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v000001bb671c3a80_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v000001bb671c3ee0_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v000001bb671c3d00_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000001bb671c4e50_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3940_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v000001bb671c36c0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3c60_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3580_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v000001bb671c3da0_0, 0;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v000001bb671c3760_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3800_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c38a0_0, 0;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v000001bb671c3440_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c3620_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000001bb671c4f90_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c39e0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c3b20_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c3e40_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c2fe0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v000001bb671c33a0_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v000001bb671c3a80_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v000001bb671c3ee0_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v000001bb671c3d00_0, 0;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v000001bb671643c0_0;
+    %assign/vec4 v000001bb671c3940_0, 0;
+    %load/vec4 v000001bb671c2d10_0;
+    %assign/vec4 v000001bb671c36c0_0, 0;
+    %load/vec4 v000001bb67164280_0;
+    %assign/vec4 v000001bb671c3c60_0, 0;
+    %load/vec4 v000001bb671c2ef0_0;
+    %assign/vec4 v000001bb671c3580_0, 0;
+    %load/vec4 v000001bb671c3bc0_0;
+    %assign/vec4 v000001bb671c3da0_0, 0;
+    %load/vec4 v000001bb671641e0_0;
+    %assign/vec4 v000001bb671c3760_0, 0;
+    %load/vec4 v000001bb67164320_0;
+    %assign/vec4 v000001bb671c3800_0, 0;
+    %load/vec4 v000001bb671640a0_0;
+    %assign/vec4 v000001bb671c38a0_0, 0;
+    %load/vec4 v000001bb671c2e50_0;
+    %assign/vec4 v000001bb671c3440_0, 0;
+    %load/vec4 v000001bb671c2db0_0;
+    %assign/vec4 v000001bb671c3620_0, 0;
+    %load/vec4 v000001bb671c3300_0;
+    %assign/vec4 v000001bb671c4f90_0, 0;
+    %load/vec4 v000001bb671c3120_0;
+    %assign/vec4 v000001bb671c39e0_0, 0;
+    %load/vec4 v000001bb671c31c0_0;
+    %assign/vec4 v000001bb671c3b20_0, 0;
+    %load/vec4 v000001bb67164140_0;
+    %assign/vec4 v000001bb671c3e40_0, 0;
+    %load/vec4 v000001bb671332e0_0;
+    %assign/vec4 v000001bb671c2fe0_0, 0;
+    %load/vec4 v000001bb671c2c70_0;
+    %assign/vec4 v000001bb671c33a0_0, 0;
+    %load/vec4 v000001bb671c3080_0;
+    %assign/vec4 v000001bb671c3a80_0, 0;
+    %load/vec4 v000001bb671c3260_0;
+    %assign/vec4 v000001bb671c3ee0_0, 0;
+    %load/vec4 v000001bb671c34e0_0;
+    %assign/vec4 v000001bb671c3d00_0, 0;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "ID_EX.v";
