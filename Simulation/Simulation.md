@@ -31,7 +31,7 @@ or   x5, x1, x2     # x5 = 5 | 7 = 7
 Purpose:  
 Ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.  
 **Waveform Observation**  
-![Waveform Test 1](Image/waveform_test3_1.png)
+![Waveform Test 1](Image/waveform_test1.png)
 
 
 **Test 2 – Memory Access with Control Flow**  
