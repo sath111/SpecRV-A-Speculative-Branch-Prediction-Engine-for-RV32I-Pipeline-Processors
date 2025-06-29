@@ -33,6 +33,16 @@ This unit combines information from the BTB, GHSR, and PHT to make a final predi
 **Snapshot & Mispredict Handler**  
 To handle mispredictions, the system takes a snapshot of the predictor state (including GHSR and PC) at the time of branch fetch. If the prediction is later discovered to be incorrect, this snapshot is used to restore the correct state and flush any incorrectly speculated instructions from the pipeline. This mechanism improves accuracy and is essential for implementing advanced predictors such as tournament-based models.  
  
+# Simulation & Testing
+To verify the behavior and effectiveness of the Gshare branch prediction engine, this project includes a set of focused test programs located in the Simulation&Testing/ directory. These test cases are written in RV32I assembly and compiled to machine code, targeting specific aspects of branch prediction such as:
+* Control flow without branches (baseline test)
+* Mixed arithmetic and memory operations
+* Nested loops with both conditional (beq) and unconditional (jal) branches
+
+The tests are designed to validate:
+* Prediction accuracy across repeated control-flow patterns
+* Snapshot and rollback correctness on mispredictions
+* Compatibility of the predictor with memory operations and instruction forwarding
 
 # Performance Gains from Early Branch Prediction
 * Conditional branches such as beq and bne benefit significantly from the integration of the Gshare predictor. By maintaining a global history register (GHSR) and consulting a pattern history table (PHT) using XOR indexing, the predictor can anticipate whether a branch is likely to be taken or not. This prediction happens at the fetch stage, allowing the pipeline to preemptively decide the control flow before the instruction is decoded or executed. When the prediction is accurate, the pipeline avoids control stalls; if mispredicted, a snapshot-based recovery mechanism restores the correct path with minimal penalty.
