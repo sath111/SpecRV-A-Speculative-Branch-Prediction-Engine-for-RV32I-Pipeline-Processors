@@ -18,26 +18,26 @@ To help visualize the design, a complete architecture diagram is provided:
 View the full system diagram here: [Insert your draw.io or shared image link]  
 
 # Modules Breakdown
-**Global History Shift Register (GHSR)**
+**Global History Shift Register (GHSR)**  
 The GHSR maintains a history of recent branch outcomes, represented as a shift register. Each time a branch is executed, its actual taken/not-taken result is shifted into the register. This history allows the system to detect patterns and use them for future predictions. The length of the GHSR is configurable (e.g., 6–12 bits), impacting the size and resolution of the Pattern History Table.  
 
-**Pattern History Table (PHT)**
+**Pattern History Table (PHT)**  
 The PHT is an array of 2-bit saturating counters used to predict the outcome of a branch. The table is indexed by XORing the current PC with the GHSR, which helps spread out correlated branches across the table and reduce aliasing. Each counter indicates how likely a given history pattern is to result in a taken or not-taken decision. Updates are made after the actual branch outcome is known.  
 
-**Branch Target Buffer (BTB)**
+**Branch Target Buffer (BTB)**  
 The BTB is a small associative memory that stores target addresses for recently executed branch or jump instructions. Each BTB entry contains a tag (from the PC), a valid bit, and the predicted target PC. If a matching entry is found during the fetch stage, the pipeline speculates to the given target address. The BTB is crucial for jump-type instructions such as jal, jalr, and for conditional branches.  
 
-**Control Unit**
+**Control Unit**  
 This unit combines information from the BTB, GHSR, and PHT to make a final prediction. It determines whether a branch is predicted taken and calculates the next PC accordingly. The unit also handles branch classification to distinguish between different branch types and applies specific prediction rules based on instruction behavior.  
 
-**Snapshot & Mispredict Handler** 
+**Snapshot & Mispredict Handler**  
 To handle mispredictions, the system takes a snapshot of the predictor state (including GHSR and PC) at the time of branch fetch. If the prediction is later discovered to be incorrect, this snapshot is used to restore the correct state and flush any incorrectly speculated instructions from the pipeline. This mechanism improves accuracy and is essential for implementing advanced predictors such as tournament-based models.  
 
-## Simulation & Testing
+## Simulation & Testing  
 To verify the behavior and robustness of the Gshare branch predictor, three distinct test programs were used, each designed to stress different aspects of branch prediction, data independence, and control flow.  
 These test cases were written in RV32I assembly and converted to machine code for simulation. The primary goal was to monitor prediction accuracy, detect mispredictions, and evaluate the effectiveness of the snapshot and rollback mechanism under various scenarios.  
 
-**Test 1 – Independent Arithmetic Instructions**
+**Test 1 – Independent Arithmetic Instructions**  
 This test includes a sequence of independent arithmetic instructions that do not involve branching. It serves as a control case, allowing us to verify that the predictor does not interfere when branches are not present, and that speculative execution proceeds as expected.  
 ```
 addi x1, x0, 5
@@ -49,7 +49,7 @@ or   x5, x1, x2     # x5 = 5 | 7 = 7
 Purpose:  
 Ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.   
 
-**Test 2 – Memory Access with Control Flow**
+**Test 2 – Memory Access with Control Flow**  
 This test mixes arithmetic and memory access with a small data forwarding scenario. The memory operations help verify that speculative instructions following stores and loads are not incorrectly flushed. It also allows indirect observation of pipeline correctness around control signals.
 ```
 addi x2, x0, 5        # x2 = 5
@@ -64,7 +64,7 @@ add  x5, x4, x2       # x5 = 5 + 5 = 10
 Purpose:  
 Validates that instructions not dependent on branches are still correctly executed even with memory interaction. It checks for proper behavior of pipeline flush logic when no branches are involved.  
 
-**Test 3 – Nested Loops with Branches (Gshare-focused)**
+**Test 3 – Nested Loops with Branches (Gshare-focused)**  
 This test is specifically designed to evaluate the Gshare branch predictor’s performance. It consists of a nested loop using beq and jal, challenging the predictor with multiple control-flow patterns, especially backward branches which form tight loops.  
 ```
 addi x0, x0, 0          # nop
