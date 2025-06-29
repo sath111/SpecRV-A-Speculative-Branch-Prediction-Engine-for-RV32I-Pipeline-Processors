@@ -83,12 +83,12 @@ By monitoring GHSR behavior and observing misprediction recovery in the waveform
 ![Waveform Test 3](../Image/waveform_test3_2.png)
 ![Waveform Test 3](../Image/waveform_test3_1.png)  
 
-This waveform captures a critical stage during the execution of Test 3, where the Gshare branch predictor encounters a nested loop structure. The key instruction in this pattern is the conditional branch beq x3, x4, CONTINUE at address 0x27, which governs the exit of the inner loop and is the main source of misprediction.
-Initially, since x3 starts at 0 and x4 is set to 4, the condition x3 == x4 evaluates to false, meaning the branch should be not taken. However, due to a lack of history, the predictor may incorrectly default to predicting taken, resulting in a misprediction. This is clearly observed in the waveform:
-* ```mispre = 1 ``` is asserted each time the prediction at address 0x27 is incorrect.
-* Immediately after a misprediction, the control unit triggers D_flush and E_flush to remove the invalid instructions from the Decode and Execute stages. These instructions were fetched based on the wrong speculative path and must be discarded.
-* The system then restores the correct PC using i_pc_restore, refetches the correct instruction, and restores the predictor snapshot, returning the pipeline to a consistent state prior to the misprediction.
-* During this recovery phase, the signal i_addr_update fluctuates heavily due to repeated flushes and re-fetching of the same instruction address, such as 08 → 09 → 07 → 08....
-* As the branch at 0x27 is encountered repeatedly (e.g., when x1 = 2), the predictor begins to learn its actual behavior (taken) and updates the PHT entries based on the global history (GHSR).
-* At iteration x1 = 3, mispre = 1 is asserted one final time, indicating the predictor is still transitioning (e.g., from weak not taken to weak taken). After that, the predictions stabilize and become accurate.
-* It is important to note that the unconditional jump jal x0, LOOP does not cause any misprediction, as such branches are always treated as taken and do not rely on the branch predictor.
+This waveform captures a critical stage during the execution of Test 3, where the Gshare branch predictor encounters a nested loop structure. The key instruction in this pattern is the conditional branch ```beq x3, x4, CONTINUE``` at address ```0x27```, which governs the exit of the inner loop and is the main source of misprediction.
+Initially, since ```x3``` starts at 0 and ```x4``` is set to 4, the condition ```x3 == x4``` evaluates to false, meaning the branch should be not taken. However, due to a lack of history, the predictor may incorrectly default to predicting taken, resulting in a misprediction. This is clearly observed in the waveform:
+* ```mispre = 1``` is asserted each time the prediction at address ```0x27``` is incorrect.
+* Immediately after a misprediction, the control unit triggers ```D_flush``` and ```E_flush``` to remove the invalid instructions from the Decode and Execute stages. These instructions were fetched based on the wrong speculative path and must be discarded.
+* The system then restores the correct PC, refetches the correct instruction, and restores the predictor snapshot, returning the pipeline to a consistent state prior to the misprediction.
+* During this recovery phase, the signal i_addr_update fluctuates heavily due to repeated flushes and re-fetching of the same instruction address, such as ```08 → 09 → 07 → 08....```
+* As the branch at ```0x27``` is encountered repeatedly (e.g., when ```x1 = 2```), the predictor begins to learn its actual behavior (taken) and updates the PHT entries based on the global history (GHSR).
+* At iteration ```x1 = 3```, ```mispre = 1``` is asserted one final time, indicating the predictor is still transitioning (e.g., from weak not taken to weak taken). After that, the predictions stabilize and become accurate.
+* It is important to note that the unconditional ```jump jal x0, LOOP``` does not cause any misprediction, as such branches are always treated as taken and do not rely on the branch predictor.
