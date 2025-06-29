@@ -49,7 +49,7 @@ add  x5, x4, x2       # x5 = 5 + 5 = 10
 **Waveform Observation** 
 ![Waveform Test 2](../Image/waveform_test2.png)
 
-**Test 3 – Nested Loops with Branches (Gshare-focused)**  
+### Test 3 – Nested Loops with Branches (Gshare-focused)
 This test is specifically designed to evaluate the Gshare branch predictor’s performance. It consists of a nested loop using beq and jal, challenging the predictor with multiple control-flow patterns, especially backward branches which form tight loops.  
 ```
 addi x0, x0, 0          # nop
@@ -77,5 +77,8 @@ This is the main stress test for Gshare. The predictor must learn:
 * That beq x3, x4 and beq x1, x2 have different histories and frequency  
 * That jal is always taken  
 * To quickly recover from mispredictions using snapshots  
-By monitoring GHSR behavior and observing misprediction recovery in the waveform, this test highlights how well the predictor adapts to nested control flow and whether the rollback mechanism works correctly.  
+By monitoring GHSR behavior and observing misprediction recovery in the waveform, this test highlights how well the predictor adapts to nested control flow and whether the rollback mechanism works correctly.
+
+**Waveform Observation**
+![Waveform Test 3](../Image/waveform_test3_1.png)
 
