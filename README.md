@@ -15,7 +15,7 @@
 * The overall architecture of this system includes a Gshare predictor integrated into a standard 5-stage RV32I pipeline. The predictor influences the instruction fetch path by speculatively supplying the next PC and is later corrected if the prediction was wrong.  
 * The system captures the relationship between BTB, GHSR, PHT, and the pipeline stages responsible for resolving branches. Mispredictions trigger a flush and rollback mechanism using a stored snapshot of the predictor state.  
 To help visualize the design, a complete architecture diagram is provided:  
-View the full system diagram here: [Insert your draw.io or shared image link]  
+![RV32I Branch Prediction Diagram](image/rv32i_branchprediction.png)
 
 ## Modules Breakdown
 **Global History Shift Register (GHSR)**  
