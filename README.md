@@ -1,5 +1,5 @@
 # SpecRV: A Speculative Branch Prediction Engine for RV32I Pipeline Processors
-* This project implements a lightweight and modular speculative branch prediction engine based on the Gshare algorithm, designed for RV32I 5-stage in-order pipeline processors.  
+* This project introduces SpecRV, a lightweight yet powerful speculative branch prediction engine tailored specifically for RV32I 5-stage in-order pipelined processors. Built around the well-known Gshare algorithm, SpecRV aims to enhance pipeline efficiency by minimizing control hazards introduced by branch instructions—both conditional and unconditional.  
 
 # Overview / Introduction
 * Branch prediction is a critical performance feature in pipelined processors, helping to reduce control hazards by speculatively executing instructions before the outcome of a branch is resolved. This project introduces a Verilog-based Gshare branch predictor, implemented alongside a simple RV32I 5-stage pipeline CPU.  
