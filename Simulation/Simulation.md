@@ -1,7 +1,7 @@
-# Simulation & Testing  
+## Simulation & Testing  
 To verify the behavior and robustness of the Gshare branch predictor, three distinct test programs were used, each designed to stress different aspects of branch prediction, data independence, and control flow.  
 These test cases were written in RV32I assembly and converted to machine code for simulation. The primary goal was to monitor prediction accuracy, detect mispredictions, and evaluate the effectiveness of the snapshot and rollback mechanism under various scenarios.  
-# How to Run the Simulation
+## How to Run the Simulation
 The simulation setup uses Icarus Verilog to compile and execute the hardware design, and GTKWave to inspect the resulting waveform. A dedicated testbench is used to drive the CPU with different test cases provided in machine code format.  
 1. Prepare the test case
    Each test program is written in RV32I assembly and compiled into a .hex or .txt file, which is loaded into instruction memory by the testbench.  
@@ -19,7 +19,7 @@ The simulation setup uses Icarus Verilog to compile and execute the hardware des
    ```
 This setup allows for full-cycle debugging and insight into the internal behavior of the Gshare predictor, including how it responds to control flow, how speculation is handled, and how rollback is triggered on mispredictions.  
 
-**Test 1 – Independent Arithmetic Instructions**  
+### Test 1 – Independent Arithmetic Instructions
 This test includes a sequence of independent arithmetic instructions that do not involve branching. It serves as a control case, allowing us to verify that the predictor does not interfere when branches are not present, and that speculative execution proceeds as expected.  
 ```
 addi x1, x0, 5
@@ -28,13 +28,12 @@ add  x3, x1, x2     # x3 = 5 + 7 = 12
 sub  x4, x2, x1     # x4 = 7 - 5 = 2
 or   x5, x1, x2     # x5 = 5 | 7 = 7
 ```
-Purpose:  
-Ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.  
+**Purpose**: ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.  
 **Waveform Observation** 
 ![Waveform Test 1](../Image/waveform_test1.png)
 
 
-**Test 2 – Memory Access with Control Flow**  
+### Test 2 – Memory Access with Control Flow
 This test mixes arithmetic and memory access with a small data forwarding scenario. The memory operations help verify that speculative instructions following stores and loads are not incorrectly flushed. It also allows indirect observation of pipeline correctness around control signals.
 ```
 addi x2, x0, 5        # x2 = 5
@@ -46,8 +45,7 @@ sw   x2, 0(x3)        # MEM[10] = 5
 lw   x4, 0(x3)        # x4 = 5
 add  x5, x4, x2       # x5 = 5 + 5 = 10
 ```
-Purpose:  
-Validates that instructions not dependent on branches are still correctly executed even with memory interaction. It checks for proper behavior of pipeline flush logic when no branches are involved.  
+**Purpose**: validates that instructions not dependent on branches are still correctly executed even with memory interaction. It checks for proper behavior of pipeline flush logic when no branches are involved.  
 **Waveform Observation** 
 ![Waveform Test 2](../Image/waveform_test2.png)
 
