@@ -31,7 +31,8 @@ or   x5, x1, x2     # x5 = 5 | 7 = 7
 Purpose:  
 Ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.  
 **Waveform Observation** 
-![RV32I Branch Prediction Diagram](Image/rv32i_branchprediction.png)
+![Waveform Test 1](../Image/waveform_test1.png)
+
 
 **Test 2 – Memory Access with Control Flow**  
 This test mixes arithmetic and memory access with a small data forwarding scenario. The memory operations help verify that speculative instructions following stores and loads are not incorrectly flushed. It also allows indirect observation of pipeline correctness around control signals.
