@@ -29,7 +29,7 @@ sub  x4, x2, x1     # x4 = 7 - 5 = 2
 or   x5, x1, x2     # x5 = 5 | 7 = 7
 ```
 Purpose:  
-Ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.
+Ensures that the pipeline operates correctly in the absence of branches and that the predictor remains idle without introducing noise or false speculation.  
 **Waveform Observation**  
 ![Waveform](Image/waveform_test1.png)  
 
