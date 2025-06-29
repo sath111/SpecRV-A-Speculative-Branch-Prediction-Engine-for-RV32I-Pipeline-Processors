@@ -32,3 +32,18 @@ This unit combines information from the BTB, GHSR, and PHT to make a final predi
 
 ## Snapshot & Mispredict Handler  
 To handle mispredictions, the system takes a snapshot of the predictor state (including GHSR and PC) at the time of branch fetch. If the prediction is later discovered to be incorrect, this snapshot is used to restore the correct state and flush any incorrectly speculated instructions from the pipeline. This mechanism improves accuracy and is essential for implementing advanced predictors such as tournament-based models.  
+
+## Simulation & Testing
+To verify the behavior and robustness of the Gshare branch predictor, three distinct test programs were used, each designed to stress different aspects of branch prediction, data independence, and control flow.  
+These test cases were written in RV32I assembly and converted to machine code for simulation. The primary goal was to monitor prediction accuracy, detect mispredictions, and evaluate the effectiveness of the snapshot and rollback mechanism under various scenarios.  
+
+**Test 1 – Independent Arithmetic Instructions**
+This test includes a sequence of independent arithmetic instructions that do not involve branching. It serves as a control case, allowing us to verify that the predictor does not interfere when branches are not present, and that speculative execution proceeds as expected.  
+```
+addi x1, x0, 5
+addi x2, x0, 7
+add  x3, x1, x2     # x3 = 5 + 7 = 12
+sub  x4, x2, x1     # x4 = 7 - 5 = 2
+or   x5, x1, x2     # x5 = 5 | 7 = 7
+```
+
