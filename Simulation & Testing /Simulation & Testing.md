@@ -6,17 +6,17 @@ The simulation setup uses Icarus Verilog to compile and execute the hardware des
 1. Prepare the test case
    Each test program is written in RV32I assembly and compiled into a .hex or .txt file, which is loaded into instruction memory by the testbench.  
 2. Compile the design and testbench
-   '''
+   ```
    iverilog -o RV32I_top_tb RV32I_top_tb.v
-   '''
+   ```
 3. Run the simulation
-   '''
+   ```
    vvp RV32I_top_tb
-   '''
+   ```
 4. View the waveform
-   '''
+   ```
    gtkwave RV32I_top_tb.vcd
-   '''
+   ```
 
 **Test 1 – Independent Arithmetic Instructions**  
 This test includes a sequence of independent arithmetic instructions that do not involve branching. It serves as a control case, allowing us to verify that the predictor does not interfere when branches are not present, and that speculative execution proceeds as expected.  
