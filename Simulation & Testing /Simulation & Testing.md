@@ -33,6 +33,7 @@ Ensures that the pipeline operates correctly in the absence of branches and that
 **Waveform Observation**  
 ![Waveform Test 1](Image/waveform_test1.png)
 
+
 **Test 2 – Memory Access with Control Flow**  
 This test mixes arithmetic and memory access with a small data forwarding scenario. The memory operations help verify that speculative instructions following stores and loads are not incorrectly flushed. It also allows indirect observation of pipeline correctness around control signals.
 ```
