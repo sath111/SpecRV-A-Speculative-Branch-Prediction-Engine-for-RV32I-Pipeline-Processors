@@ -19,16 +19,16 @@ View the full system diagram here: [Insert your draw.io or shared image link]
 
 # Modules Breakdown
 ## Global History Shift Register (GHSR)  
-* The GHSR maintains a history of recent branch outcomes, represented as a shift register. Each time a branch is executed, its actual taken/not-taken result is shifted into the register. This history allows the system to detect patterns and use them for future predictions. The length of the GHSR is configurable (e.g., 6–12 bits), impacting the size and resolution of the Pattern History Table.  
+The GHSR maintains a history of recent branch outcomes, represented as a shift register. Each time a branch is executed, its actual taken/not-taken result is shifted into the register. This history allows the system to detect patterns and use them for future predictions. The length of the GHSR is configurable (e.g., 6–12 bits), impacting the size and resolution of the Pattern History Table.  
 
 ## Pattern History Table (PHT)  
-* The PHT is an array of 2-bit saturating counters used to predict the outcome of a branch. The table is indexed by XORing the current PC with the GHSR, which helps spread out correlated branches across the table and reduce aliasing. Each counter indicates how likely a given history pattern is to result in a taken or not-taken decision. Updates are made after the actual branch outcome is known.  
+The PHT is an array of 2-bit saturating counters used to predict the outcome of a branch. The table is indexed by XORing the current PC with the GHSR, which helps spread out correlated branches across the table and reduce aliasing. Each counter indicates how likely a given history pattern is to result in a taken or not-taken decision. Updates are made after the actual branch outcome is known.  
 
 ## Branch Target Buffer (BTB)  
-* The BTB is a small associative memory that stores target addresses for recently executed branch or jump instructions. Each BTB entry contains a tag (from the PC), a valid bit, and the predicted target PC. If a matching entry is found during the fetch stage, the pipeline speculates to the given target address. The BTB is crucial for jump-type instructions such as jal, jalr, and for conditional branches.  
+The BTB is a small associative memory that stores target addresses for recently executed branch or jump instructions. Each BTB entry contains a tag (from the PC), a valid bit, and the predicted target PC. If a matching entry is found during the fetch stage, the pipeline speculates to the given target address. The BTB is crucial for jump-type instructions such as jal, jalr, and for conditional branches.  
 
 ## Control Unit  
-* This unit combines information from the BTB, GHSR, and PHT to make a final prediction. It determines whether a branch is predicted taken and calculates the next PC accordingly. The unit also handles branch classification to distinguish between different branch types and applies specific prediction rules based on instruction behavior.  
+This unit combines information from the BTB, GHSR, and PHT to make a final prediction. It determines whether a branch is predicted taken and calculates the next PC accordingly. The unit also handles branch classification to distinguish between different branch types and applies specific prediction rules based on instruction behavior.  
 
-Snapshot & Mispredict Handler  
+## Snapshot & Mispredict Handler  
 To handle mispredictions, the system takes a snapshot of the predictor state (including GHSR and PC) at the time of branch fetch. If the prediction is later discovered to be incorrect, this snapshot is used to restore the correct state and flush any incorrectly speculated instructions from the pipeline. This mechanism improves accuracy and is essential for implementing advanced predictors such as tournament-based models.  
