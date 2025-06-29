@@ -48,6 +48,8 @@ add  x5, x4, x2       # x5 = 5 + 5 = 10
 ```
 Purpose:  
 Validates that instructions not dependent on branches are still correctly executed even with memory interaction. It checks for proper behavior of pipeline flush logic when no branches are involved.  
+**Waveform Observation** 
+![Waveform Test 2](../Image/waveform_test2.png)
 
 **Test 3 – Nested Loops with Branches (Gshare-focused)**  
 This test is specifically designed to evaluate the Gshare branch predictor’s performance. It consists of a nested loop using beq and jal, challenging the predictor with multiple control-flow patterns, especially backward branches which form tight loops.  
